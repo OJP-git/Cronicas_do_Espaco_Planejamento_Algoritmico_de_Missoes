@@ -1,15 +1,15 @@
-#Crônicas do Espaço 
+# Crônicas do Espaço 
 
-##Integrantes:
+## Integrantes:
 * Gabriel Camargo Sodre
 * GUILHERME SCHIVITTEZ PEDROSO
 * João Pedro da Silva Netto
 
-##Tecnologias:
+## Tecnologias:
 * Linguagem: C
 * Estrutura de dados: Tabela Hash
 * API: A definir
 
-##Parte 1:
+## Parte 1:
 - Uso da API em C (X)
 - Implementação de uma Tabela Hash(  )
