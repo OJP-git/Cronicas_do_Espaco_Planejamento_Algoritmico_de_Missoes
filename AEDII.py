@@ -65,6 +65,15 @@ class HashTable:
             return
         
 
+def montaString (corpoCeleste)
+    corpoCelesteString = []
+    corpoCelesteString.append = (f"Nome: {busca.get("englishName")}")
+    corpoCelesteString.append =(f"Massa: {busca.get("mass")}")
+    corpoCelesteString.append =(f"Volume: {busca.get("vol")}")
+    if ( busca.get("moons") != None ):
+        for lua in busca.get("moons"):
+            corpoCelesteString.append =(f"{lua}")
+
 url = "https://api.le-systeme-solaire.net/rest/bodies/"
 
 headers = {
@@ -86,17 +95,22 @@ if response.status_code == 200:
     
     busca = input("Digite o nome do corpo celeste em inglês: ")
     busca = tabela.procura_corpo(busca)
-    if ( busca != None ):
-        print(f"Nome: {busca.get("englishName")}")
-        print(f"Massa: {busca.get("mass")}")
-        print(f"Volume: {busca.get("vol")}")
-        if ( busca.get("moons") != None ):
-             for lua in busca.get("moons"):
-                print(f"{lua}")
-    print(f"Colisões -> {tabela.colisoes}")
-    print(f"Fator de carga -> {tabela.num_corpos/tabela.size}")
-    print(f"Tamanho -> {tabela.size}")
-    print(f"Número de corpos -> {tabela.num_corpos}")
-else:
-    # Caso a URL esteja errada ou o servidor fora do ar
-    print(f"Erro na requisição. Código: {response.status_code}")
+
+    while (busca != None)
+        if ( busca != None ):
+            montaString ( busca )
+            print(f"Nome: {busca.get("englishName")}")
+            print(f"Massa: {busca.get("mass")}")
+            print(f"Volume: {busca.get("vol")}")
+            if ( busca.get("moons") != None ):
+                for lua in busca.get("moons"):
+                    print(f"{lua}")
+        print(f"Colisões -> {tabela.colisoes}")
+        print(f"Fator de carga -> {tabela.num_corpos/tabela.size}")
+        print(f"Tamanho -> {tabela.size}")
+        print(f"Número de corpos -> {tabela.num_corpos}")
+        busca = input("Digite o nome do corpo celeste em inglês: ")
+        busca = tabela.procura_corpo(busca)
+    else:
+        # Caso a URL esteja errada ou o servidor fora do ar
+        print(f"Erro na requisição. Código: {response.status_code}")
