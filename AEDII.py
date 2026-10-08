@@ -105,12 +105,12 @@ if response.status_code == 200:
             if ( busca.get("moons") != None ):
                 for lua in busca.get("moons"):
                     print(f"{lua}")
-        print(f"Colisões -> {tabela.colisoes}")
-        print(f"Fator de carga -> {tabela.num_corpos/tabela.size}")
-        print(f"Tamanho -> {tabela.size}")
-        print(f"Número de corpos -> {tabela.num_corpos}")
-        busca = input("Digite o nome do corpo celeste em inglês: ")
-        busca = tabela.procura_corpo(busca)
-    else:
-        # Caso a URL esteja errada ou o servidor fora do ar
-        print(f"Erro na requisição. Código: {response.status_code}")
+            print(f"Colisões -> {tabela.colisoes}")
+            print(f"Fator de carga -> {tabela.num_corpos/tabela.size}")
+            print(f"Tamanho -> {tabela.size}")
+            print(f"Número de corpos -> {tabela.num_corpos}")
+            busca = input("Digite o nome do corpo celeste em inglês: ")
+            busca = tabela.procura_corpo(busca)
+        else:
+            # Caso a URL esteja errada ou o servidor fora do ar
+            print(f"Erro na requisição. Código: {response.status_code}")
