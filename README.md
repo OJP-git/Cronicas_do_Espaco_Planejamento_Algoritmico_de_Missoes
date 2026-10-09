@@ -24,7 +24,6 @@
     * `vol` (dict): Objeto aninhado com volValue (float) e volExponent (int).
     * `gravity` (float): Aceleração da gravidade superficial em m/s².
     * `moons` (list ou None): Lista de dicionários contendo referências às luas orbitantes.
-* **Data da Consulta:** 09 de outubro de 2026.
 
 ---
 
@@ -48,9 +47,6 @@
 
 * **Estrutura Escolhida:** Tabela Hash com resolução de colisões por encadeamento externo (Separate Chaining).
 * **Justificativa da Escolha:** Assegura complexidade de tempo médio O(1) para busca e inserção. O encadeamento por listas encadeadas (`HashNode`) confere tolerância a colisões em conjuntos de chaves lexicais semelhantes sem depender de sondagens destrutivas.
-* **Interfaces Projetadas (Requisito Parte 2):**
-  * Trie: Projetada com métodos `inserir(palavra)`, `buscar(palavra)` e `pesquisa_prefixo(prefixo)`.
-  * Árvore B: Projetada com métodos `inserir_chave(chave, valor)`, `remover(chave)`, `buscar(chave)` e `split_no(no)`.
 * **Instrumentação e Métricas Rastreadas:**
   * Número total de colisões rastreadas durante o ciclo de vida da tabela (`colisoes`).
   * Fator de carga corrente (`num_corpos / size`).
