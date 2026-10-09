@@ -41,7 +41,8 @@
 'aroundPlanet': {'planet': 'terre', 'rel': 'https://api.le-systeme-solaire.net/rest/bodies/terre'},
 'discoveredBy': '', 'discoveryDate': '', 'alternativeName': '',
 'axialTilt': 6.68, 'avgTemp': 0, 'mainAnomaly': 0, 'argPeriapsis': 0, 'longAscNode': 0,
-'bodyType': 'Moon'}
+'bodyType': 'Moon'
+}
 ```
 ---
 
