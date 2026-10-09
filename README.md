@@ -38,11 +38,10 @@
 * **Operações Implementadas:**
   * Inserção de corpos celestes (`add_corpo`).
   * Busca exata por nome (`procura_corpo`).
-  * Coleta e contagem de frequências de caracteres (`contaFrequencia`).
+  * Coleta e contagem de frequências de caracteres (`conta_frequencia`).
   * Conversão estrutural de hash para lista encadeada (`transforma_em_vetor`).
 * **Decisões de Projeto:**
   * **Módulo de Aquisição Nível 1 (Consumo Dinâmico):** As requisições HTTP GET ocorrem na inicialização do sistema, realizando o parse do JSON diretamente para as estruturas internas em tempo de execução.
-  * **Proibição de Estruturas Nativas de Alto Nível:** Não foram utilizados dicionários nativos (`dict`) ou conjuntos (`set`) para a lógica central e contagem de telemetria; ambas utilizam a implementação proprietária de Tabela Hash com encadeamento.
 
 ---
 
@@ -57,7 +56,7 @@
   * Número total de colisões rastreadas durante o ciclo de vida da tabela (`colisoes`).
   * Fator de carga corrente (`num_corpos / size`).
   * Capacidade total do vetor interno (`size`).
-  * Quantidade líquida de elementos inseridos (`num_corpos`).
+  * Quantidade líquida de elementos inseridos (`num_corpos`).  * **Proibição de Estruturas Nativas de Alto Nível:** Não foram utilizados dicionários nativos (`dict`) ou conjuntos (`set`) para a lógica central e contagem de telemetria; ambas utilizam a implementação proprietária de Tabela Hash com encadeamento.
 * **Complexidade das Operações:**
   * Busca: Caso Médio O(1), Pior Caso O(n).
   * Inserção: Caso Médio O(1), Pior Caso O(n).
