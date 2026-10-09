@@ -89,5 +89,5 @@ Portanto, o custo total de qualquer sequência de n inserções é limitado supe
   1. Contagem de frequência de todos os caracteres do payload textual bruto via Tabela Hash própria.
   2. Extração dos pares (caractere, frequência) para ordenação decrescente.
   3. Construção da Árvore de Huffman combinando sucessivamente os nós terminais de menor frequência.
-  4. Mapeamento dos caminhos binários em um dicionário de códigos (`geraCodigo`).
+  4. Mapeamento dos caminhos binários em um dicionário de códigos (`gera_codigo`).
   5. Cálculo comparativo do total de bits originais frente ao payload comprimido via `calcula_compressao`.
