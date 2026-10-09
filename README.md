@@ -2,7 +2,6 @@
 
 **Projeto:** Sistema de Gerenciamento e Planejamento de Missões Espaciais  
 **Disciplina:** Estruturas de Dados Avançadas e Algoritmos  
-**Data da Consulta e Testes:** 09 de outubro de 2026  
 
 ---
 
