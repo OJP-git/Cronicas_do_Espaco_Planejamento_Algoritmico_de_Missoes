@@ -34,13 +34,13 @@ class HashTable:
         
         for item in tabela_antiga:
             if item is not None:
-                self.add_corpo(item.nome, item.dados)
+                self.add(item.nome, item.dados)
                 pointer = item.next
                 while pointer != None:
-                    self.add_corpo(pointer.nome, pointer.dados)
+                    self.add(pointer.nome, pointer.dados)
                     pointer = pointer.next
     
-    def add_corpo(self, nome, dados):
+    def add(self, nome, dados):
         fator_carga = self.num_corpos / self.size
         if fator_carga >= 0.5:
             self.dobra_tamanho()
@@ -51,7 +51,7 @@ class HashTable:
         else:
             self.colisoes += 1
             self.tabela[indice].add_node(nome, dados)
-    def procura_corpo(self, nome):
+    def procura(self, nome):
         indice = self.calcula_hash(nome)
         if ( self.tabela[indice] == None ):
             return
@@ -99,20 +99,20 @@ def transforma_em_vetor(hash):
     return vetor
         
 
-def contaFrequencia (string, hash, nodesArr):
+def conta_frequencia (string, hash, nodes_arr):
     for chares in string:
-        char = hash.procura_corpo(chares)
+        char = hash.procura(chares)
         if char != None:
             char.dados += 1
         else:
             new = Huffman_node(None, None, None, None)
-            nodesArr.append(new)
-            hash.add_corpo(chares, 1)
+            nodes_arr.append(new)
+            hash.add(chares, 1)
 
 def pegaInt(item):
     return item.dados
 
-def ordenaDecrescente(vetor):  
+def ordena_decrescente(vetor):  
     vetor = sorted(
         vetor,
         key=pegaInt,
@@ -120,41 +120,41 @@ def ordenaDecrescente(vetor):
     )
     return vetor
 
-def reordena(nodesArr):
-    i = len(nodesArr) - 2
-    n = len(nodesArr) - 1
+def reordena(nodes_arr):
+    i = len(nodes_arr) - 2
+    n = len(nodes_arr) - 1
 
-    while i >= 0 and nodesArr[n].freq > nodesArr[i].freq:
-        m = nodesArr[n]
-        nodesArr[n] = nodesArr[i]
-        nodesArr[i] = m
+    while i >= 0 and nodes_arr[n].freq > nodes_arr[i].freq:
+        m = nodes_arr[n]
+        nodes_arr[n] = nodes_arr[i]
+        nodes_arr[i] = m
         i = i - 1
         n = n - 1
 
     return
 
 
-def monta_arvore(freqDict, nodesArr):
+def monta_arvore(freqDict, nodes_arr):
     n = 0
 
     for i in freqDict:
-        nodesArr[n].char = i.nome
-        nodesArr[n].freq = i.dados
+        nodes_arr[n].char = i.nome
+        nodes_arr[n].freq = i.dados
         n = n + 1
 
-    for i in range(len(nodesArr)):
-        print(f"{nodesArr[i].char}: {nodesArr[i].freq}")
+    for i in range(len(nodes_arr)):
+        print(f"{nodes_arr[i].char}: {nodes_arr[i].freq}")
 
-    while len(nodesArr) > 1:
-        new = Huffman_node(None, nodesArr[len(nodesArr) - 1].freq + nodesArr[len(nodesArr) - 2].freq, nodesArr[len(nodesArr) - 1], nodesArr[len(nodesArr) - 2])
-        nodesArr.pop()
-        nodesArr.pop()
-        nodesArr.append(new)
-        reordena(nodesArr)
+    while len(nodes_arr) > 1:
+        new = Huffman_node(None, nodes_arr[len(nodes_arr) - 1].freq + nodes_arr[len(nodes_arr) - 2].freq, nodes_arr[len(nodes_arr) - 1], nodes_arr[len(nodes_arr) - 2])
+        nodes_arr.pop()
+        nodes_arr.pop()
+        nodes_arr.append(new)
+        reordena(nodes_arr)
 
-    return nodesArr[0]
+    return nodes_arr[0]
 
-def geraCodigo(no, caminho, codigos):
+def gera_codigo(no, caminho, codigos):
     if no == None:
         return
     elif no.char != None:
@@ -163,8 +163,8 @@ def geraCodigo(no, caminho, codigos):
         else:
             codigos[no.char] = "0"
         return
-    geraCodigo(no.left, caminho + "0", codigos)
-    geraCodigo(no.right, caminho + "1", codigos)
+    gera_codigo(no.left, caminho + "0", codigos)
+    gera_codigo(no.right, caminho + "1", codigos)
 
 
 url = "https://api.le-systeme-solaire.net/rest/bodies/"
@@ -183,26 +183,26 @@ if response.status_code == 200:
     
     lista_de_corpos = dados.get("bodies", [])
 
-    nodesArr = []
+    nodes_arr = []
     for corpo in lista_de_corpos:
-        tabela.add_corpo(corpo.get('englishName'), corpo)
+        tabela.add(corpo.get('englishName'), corpo)
         
     hash_caracteres = HashTable()
 
-    contaFrequencia(response.text, hash_caracteres, nodesArr)
+    conta_frequencia(response.text, hash_caracteres, nodes_arr)
     
     vetor_caracteres = transforma_em_vetor(hash_caracteres)
     
-    freqDict = ordenaDecrescente(vetor_caracteres)
-    arvore = monta_arvore(freqDict, nodesArr)
+    freqDict = ordena_decrescente(vetor_caracteres)
+    arvore = monta_arvore(freqDict, nodes_arr)
                 
-    corpoCodificado = {}
-    geraCodigo ( arvore,"", corpoCodificado )
-    print(corpoCodificado)
-    calcula_compressao(response.text, corpoCodificado, vetor_caracteres)
+    corpo_codificado = {}
+    gera_codigo ( arvore,"", corpo_codificado )
+    print(corpo_codificado)
+    calcula_compressao(response.text, corpo_codificado, vetor_caracteres)
 
     busca = input("Digite o nome do corpo celeste em inglês: ")
-    busca = tabela.procura_corpo(busca)
+    busca = tabela.procura(busca)
     while (busca != None):
         print(f"Nome: {busca.dados.get('englishName')}")
         print(f"Massa: {busca.dados.get("mass")}")
@@ -217,7 +217,7 @@ if response.status_code == 200:
         print(f"Número de corpos -> {tabela.num_corpos}")
 
         busca = input("Digite o nome do corpo celeste em inglês: ")
-        busca = tabela.procura_corpo(busca)
+        busca = tabela.procura(busca)
         print("")
 else:
             # Caso a URL esteja errada ou o servidor fora do ar
